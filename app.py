@@ -13,7 +13,7 @@ from sklearn.metrics import classification_report, confusion_matrix, silhouette_
 from sklearn.decomposition import PCA
 
 # ========== LOAD DATA ========== #
-df = pd.read_csv(r'C:\Users\LENOVO\Downloads\Tubes datmin\enhanced_anxiety_dataset (1).csv')
+df = pd.read_csv('enhanced_anxiety_dataset (1).csv')
 st.title("📊 Dashboard Kecemasan Sosial - Data Mining")
 
 # ========== SIDEBAR FILTER ========== #
