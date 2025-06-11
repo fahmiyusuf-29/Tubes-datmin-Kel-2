@@ -44,10 +44,17 @@ df_encoded = df_encoded[(z_scores < 3).all(axis=1)]
 
 # ========== FEATURE SELECTION ========== #
 # Korelasi Pearson untuk pilih fitur paling relevan terhadap Anxiety Level
-correlation = df_encoded.corr()['Anxiety Level (1-10)'].abs().sort_values(ascending=False)
-selected_features = correlation[1:8].index.tolist()  # Ambil 7 fitur teratas (selain target)
+correlation = df_encoded[numerical_cols].corr()['Anxiety Level (1-10)'].abs().sort_values(ascending=False)
+selected_features = correlation[1:8].index.tolist()  # Ambil 7 fitur teratas selain target
+
 st.subheader("📌 Korelasi Fitur dengan Tingkat Kecemasan")
 st.write(correlation)
+
+# 📊 Tambahan: Heatmap Korelasi
+st.subheader("📊 Heatmap Korelasi Antar Fitur")
+fig, ax = plt.subplots(figsize=(10, 8))
+sns.heatmap(df_encoded.corr(), cmap='coolwarm', annot=True, fmt=".2f", ax=ax)
+st.pyplot(fig)
 
 # ========== SCALING ========== #
 scaler = MinMaxScaler()
